@@ -1,0 +1,492 @@
+{
+ "title": "80s indie pop",
+ "category": {
+  "title": "80s indie pop",
+  "year": "1980-1989",
+  "style": "Indie Pop"
+ },
+ "editionDate": "2026-10-04",
+ "seed": 364416323,
+ "tracks": [
+  {
+   "videoId": "OxXPVuWR-gM",
+   "title": "Hold On",
+   "artists": [
+    "The Orchids"
+   ],
+   "album": "Lyceum",
+   "albumYear": 1989,
+   "popularity": 1800,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "OIlv9aaLglM",
+   "title": "Blush",
+   "artists": [
+    "The Hummingbirds"
+   ],
+   "album": "loveBUZZ",
+   "albumYear": 1989,
+   "popularity": 119000,
+   "tier": "mid",
+   "reason": "#218 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "Yemgvxn4vRA",
+   "title": "Love Goes On!",
+   "artists": [
+    "The Go-Betweens"
+   ],
+   "album": "16 Lovers Lane",
+   "albumYear": 1988,
+   "popularity": 125000,
+   "tier": "mid",
+   "reason": "#212 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "KuVhm8qT8RQ",
+   "title": "Wages Day",
+   "artists": [
+    "Deacon Blue"
+   ],
+   "album": "When The World Knows Your Name",
+   "albumYear": 1989,
+   "popularity": 1400000,
+   "tier": "top",
+   "reason": "#41 of 996 by plays"
+  },
+  {
+   "videoId": "0VEgSjqCa5Q",
+   "title": "Blue Light",
+   "artists": [
+    "The Orchids"
+   ],
+   "album": "Lyceum",
+   "albumYear": 1989,
+   "popularity": 24000,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "oR4JbcVo2E8",
+   "title": "27 Ways To Get Back Home",
+   "artists": [
+    "The Pale Fountains"
+   ],
+   "album": ". . . From Across The Kitchen Table",
+   "albumYear": 1984,
+   "popularity": 9100,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "xXhwwGPp-sk",
+   "title": "Out That Door (2005 Remaster)",
+   "artists": [
+    "Hoodoo Gurus"
+   ],
+   "album": "Blow Your Cool",
+   "albumYear": 1987,
+   "popularity": 1700000,
+   "tier": "top",
+   "reason": "#37 of 996 by plays"
+  },
+  {
+   "videoId": "qdOHPjMzY8s",
+   "title": "The Boy with the Thorn in His Side",
+   "artists": [
+    "The Smiths"
+   ],
+   "album": "The Queen Is Dead",
+   "albumYear": 1986,
+   "popularity": 47000000,
+   "tier": "top",
+   "reason": "#2 of 996 by plays"
+  },
+  {
+   "videoId": "115GIDDOFdc",
+   "title": "Once Bitten, Twice Shy",
+   "artists": [
+    "Gangway"
+   ],
+   "album": "Sitting In The Park",
+   "albumYear": 1986,
+   "popularity": 7700,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "lybyhWjwSvo",
+   "title": "She Brakes For Rainbows",
+   "artists": [
+    "The B-52's"
+   ],
+   "album": "Bouncing Off The Satellites",
+   "albumYear": 1986,
+   "popularity": 455000,
+   "tier": "mid",
+   "reason": "#92 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "XmiKqRlfX00",
+   "title": "Goodbye Lucille #1",
+   "artists": [
+    "Prefab Sprout"
+   ],
+   "album": "Steve McQueen",
+   "albumYear": 1985,
+   "popularity": 2700000,
+   "tier": "top",
+   "reason": "#22 of 996 by plays"
+  },
+  {
+   "videoId": "M9ibk4sB-5A",
+   "title": "I Guess I'm Just a Little Too Sensitive",
+   "artists": [
+    "Orange Juice"
+   ],
+   "album": "The Orange Juice",
+   "albumYear": 1984,
+   "popularity": 109000,
+   "tier": "mid",
+   "reason": "#226 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "Zc55Ohn2d4s",
+   "title": "(Don't Go Back To) Rockville",
+   "artists": [
+    "R.E.M."
+   ],
+   "album": "Reckoning",
+   "albumYear": 1984,
+   "popularity": 2500000,
+   "tier": "top",
+   "reason": "#28 of 996 by plays"
+  },
+  {
+   "videoId": "t0co3CgoMMU",
+   "title": "Please, Please, Please, Let Me Get What I Want",
+   "artists": [
+    "The Smiths"
+   ],
+   "album": "Hatful of Hollow",
+   "albumYear": 1984,
+   "popularity": 60000000,
+   "tier": "top",
+   "reason": "#1 of 996 by plays"
+  },
+  {
+   "videoId": "3GhoWZ5qTwI",
+   "title": "Girlfriend in a Coma",
+   "artists": [
+    "The Smiths"
+   ],
+   "album": "Strangeways, Here We Come",
+   "albumYear": 1987,
+   "popularity": 17000000,
+   "tier": "top",
+   "reason": "#5 of 996 by plays"
+  },
+  {
+   "videoId": "QBZyiOpmjzI",
+   "title": "I Know It's Over",
+   "artists": [
+    "The Smiths"
+   ],
+   "album": "The Queen Is Dead",
+   "albumYear": 1986,
+   "popularity": 38000000,
+   "tier": "top",
+   "reason": "#4 of 996 by plays"
+  },
+  {
+   "videoId": "yumQ1osJHjE",
+   "title": "Loveless Love",
+   "artists": [
+    "The Feelies"
+   ],
+   "album": "Crazy Rhythms",
+   "albumYear": 1980,
+   "popularity": 293000,
+   "tier": "mid",
+   "reason": "#118 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "z2ZcfCpO6QE",
+   "title": "Fergus Sings The Blues",
+   "artists": [
+    "Deacon Blue"
+   ],
+   "album": "When The World Knows Your Name",
+   "albumYear": 1989,
+   "popularity": 1400000,
+   "tier": "top",
+   "reason": "#43 of 996 by plays"
+  },
+  {
+   "videoId": "Fu3GlEDdYWc",
+   "title": "Bow Down",
+   "artists": [
+    "The Housemartins"
+   ],
+   "album": "The People Who Grinned Themselves To Death",
+   "albumYear": 1987,
+   "popularity": 2500000,
+   "tier": "top",
+   "reason": "#26 of 996 by plays"
+  },
+  {
+   "videoId": "My7h-E6bqJY",
+   "title": "Foggy Eyes",
+   "artists": [
+    "Beat Happening"
+   ],
+   "album": "Beat Happening",
+   "albumYear": 1985,
+   "popularity": 107000,
+   "tier": "mid",
+   "reason": "#230 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "ZpqaNjtaU6o",
+   "title": "Blue Bell Knoll",
+   "artists": [
+    "Cocteau Twins"
+   ],
+   "album": "Blue Bell Knoll",
+   "albumYear": 1988,
+   "popularity": 1400000,
+   "tier": "top",
+   "reason": "#42 of 996 by plays"
+  },
+  {
+   "videoId": "PkkmfGJwCTA",
+   "title": "For Phoebe Still A Baby",
+   "artists": [
+    "Cocteau Twins"
+   ],
+   "album": "Blue Bell Knoll",
+   "albumYear": 1988,
+   "popularity": 423000,
+   "tier": "mid",
+   "reason": "#98 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "KNliJ-W4kcw",
+   "title": "This Night Has Opened My Eyes",
+   "artists": [
+    "The Smiths"
+   ],
+   "album": "Hatful of Hollow",
+   "albumYear": 1984,
+   "popularity": 41000000,
+   "tier": "top",
+   "reason": "#3 of 996 by plays"
+  },
+  {
+   "videoId": "h-0okVMXLm4",
+   "title": "The Venus of the Soup Kitchen",
+   "artists": [
+    "Prefab Sprout"
+   ],
+   "album": "From Langley Park to Memphis",
+   "albumYear": 1988,
+   "popularity": 67000,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "7X1HkG21oMc",
+   "title": "Listen To Me",
+   "artists": [
+    "Tommy Keene"
+   ],
+   "album": "Songs From The Film",
+   "albumYear": 1986,
+   "popularity": 1600,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "1qtpeiQrfyg",
+   "title": "Waterfall",
+   "artists": [
+    "Wendy & Lisa"
+   ],
+   "album": "Wendy And Lisa",
+   "albumYear": 1987,
+   "popularity": 2500000,
+   "tier": "top",
+   "reason": "#25 of 996 by plays"
+  },
+  {
+   "videoId": "J0u0Ntx5XUY",
+   "title": "Aldrig mere (2003 Digital Remaster)",
+   "artists": [
+    "Lars H.U.G."
+   ],
+   "album": "Kopy",
+   "albumYear": 1989,
+   "popularity": 5200,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "Rew-0P-1bFA",
+   "title": "Red Red Wine",
+   "artists": [
+    "The Replacements"
+   ],
+   "album": "Pleased to Meet Me",
+   "albumYear": 1987,
+   "popularity": 131000,
+   "tier": "mid",
+   "reason": "#207 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "l32VTUsTCqI",
+   "title": "Unsatisfied",
+   "artists": [
+    "The Replacements"
+   ],
+   "album": "Let It Be",
+   "albumYear": 1984,
+   "popularity": 2600000,
+   "tier": "top",
+   "reason": "#24 of 996 by plays"
+  },
+  {
+   "videoId": "nsFtmGyigoo",
+   "title": "Snowstorm",
+   "artists": [
+    "Galaxie 500"
+   ],
+   "album": "On Fire",
+   "albumYear": 1988,
+   "popularity": 200000,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "TtlN3nR2mOg",
+   "title": "Times We Used to Spend",
+   "artists": [
+    "Marine Girls"
+   ],
+   "album": "Lazy Ways / Beach Paty",
+   "albumYear": 1983,
+   "popularity": 4600,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  },
+  {
+   "videoId": "UL4jyHM3T1s",
+   "title": "Pillar to Post",
+   "artists": [
+    "Aztec Camera"
+   ],
+   "album": "High Land, Hard Rain",
+   "albumYear": 1983,
+   "popularity": 119000,
+   "tier": "mid",
+   "reason": "#220 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "zTxXIDdkZqs",
+   "title": "Don't Call Me Baby",
+   "artists": [
+    "Voice Of The Beehive"
+   ],
+   "album": "Let It Bee",
+   "albumYear": 1988,
+   "popularity": 1500000,
+   "tier": "top",
+   "reason": "#40 of 996 by plays"
+  },
+  {
+   "videoId": "NS0hpiN_z3g",
+   "title": "Appetite",
+   "artists": [
+    "Prefab Sprout"
+   ],
+   "album": "Steve McQueen",
+   "albumYear": 1985,
+   "popularity": 2900000,
+   "tier": "top",
+   "reason": "#20 of 996 by plays"
+  },
+  {
+   "videoId": "FUFWkuMY6xM",
+   "title": "Tugboat",
+   "artists": [
+    "Galaxie 500"
+   ],
+   "album": "Today",
+   "albumYear": 1988,
+   "popularity": 2200000,
+   "tier": "top",
+   "reason": "#32 of 996 by plays"
+  },
+  {
+   "videoId": "gF41PEIYXl0",
+   "title": "Oblivious",
+   "artists": [
+    "Aztec Camera"
+   ],
+   "album": "High Land, Hard Rain",
+   "albumYear": 1983,
+   "popularity": 2700000,
+   "tier": "top",
+   "reason": "#23 of 996 by plays"
+  },
+  {
+   "videoId": "iwWoGJXrPyk",
+   "title": "Lost Weekend",
+   "artists": [
+    "Lloyd Cole and the Commotions"
+   ],
+   "album": "Easy Pieces",
+   "albumYear": 1985,
+   "popularity": 2500000,
+   "tier": "top",
+   "reason": "#29 of 996 by plays"
+  },
+  {
+   "videoId": "cDLL7v37xLY",
+   "title": "Hit The Ground",
+   "artists": [
+    "The Darling Buds"
+   ],
+   "album": "Pop Said...",
+   "albumYear": 1988,
+   "popularity": 102000,
+   "tier": "mid",
+   "reason": "#235 of 996, middle band, one per artist/album"
+  },
+  {
+   "videoId": "YbaUcePIyhg",
+   "title": "Girl From Ipanema Goes To Greenland",
+   "artists": [
+    "The B-52's"
+   ],
+   "album": "Bouncing Off The Satellites",
+   "albumYear": 1986,
+   "popularity": 2200000,
+   "tier": "top",
+   "reason": "#33 of 996 by plays"
+  },
+  {
+   "videoId": "u2HjGSYXqbg",
+   "title": "In The Dark Times",
+   "artists": [
+    "McCarthy"
+   ],
+   "album": "I Am A Wallet",
+   "albumYear": 1987,
+   "popularity": 3000,
+   "tier": "random",
+   "reason": "random pick (seed 364416323) from 966 remaining"
+  }
+ ]
+}
