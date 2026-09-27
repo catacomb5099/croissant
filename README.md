@@ -1,0 +1,3 @@
+# playlist-curator
+
+Pre-computes weekly "suggested playlists" for [naviseerr](https://github.com/catacomb5099/naviseerr). Each category (for example "80s indie pop") is a Discogs filter (years + genre/style, sorted by most collected); the top albums are looked up on YouTube Music to get per-track play counts, and one playlist of 30-50 songs is built from that pool so the most popular songs surface without one artist or album taking over. Every edition is written as a JSON file naviseerr can read as-is. See [docs/discovery.md](docs/discovery.md) for findings, trade-offs and how naviseerr should consume the output.
