@@ -15,6 +15,7 @@ def make_pool(n_albums=100, tracks_per_album=10, n_artists=60, seed=1):
                     "title": f"song {a}-{t}",
                     "artists": [f"artist{a % n_artists}"],
                     "album": f"album{a}",
+                    "albumId": f"al{a}",
                     "albumYear": 1980 + a % 10,
                     "popularity": rng.randrange(1_000, 100_000_000),
                 }
@@ -23,6 +24,26 @@ def make_pool(n_albums=100, tracks_per_album=10, n_artists=60, seed=1):
 
 
 POOL = make_pool()
+DUP = [  # the same song on the standard and the deluxe album
+    {
+        "videoId": "a",
+        "title": "Hit",
+        "artists": ["X"],
+        "album": "LP",
+        "albumId": "lp",
+        "albumYear": 1,
+        "popularity": 10**12,
+    },
+    {
+        "videoId": "b",
+        "title": "hit",
+        "artists": ["X"],
+        "album": "LP (Deluxe)",
+        "albumId": "lp-deluxe",
+        "albumYear": 1,
+        "popularity": 10**11,
+    },
+]
 
 
 def test_size_and_no_duplicates():
@@ -35,7 +56,24 @@ def test_size_and_no_duplicates():
 def test_playlist_wide_caps_hold_across_tiers():
     pl = build_playlist(POOL, size=50, seed=2)
     assert max(Counter(a for t in pl for a in t["artists"]).values()) <= 5
-    assert max(Counter((t["artists"][0], t["album"]) for t in pl).values()) <= 2
+    assert max(Counter(t["albumId"] for t in pl).values()) <= 2
+
+
+def test_album_cap_holds_when_tracks_credit_different_first_artists():
+    lp = [
+        {
+            "videoId": f"lp{i}",
+            "title": f"song {i}",
+            "artists": arts,
+            "album": "LP",
+            "albumId": "lp",
+            "albumYear": 1,
+            "popularity": 10**12 - i,
+        }
+        for i, arts in enumerate([["A"], ["A", "B"], ["B", "A"], ["C"]])
+    ]
+    pl = build_playlist(lp + POOL[:200], size=30, seed=1)
+    assert sum(t["albumId"] == "lp" for t in pl) == 2
 
 
 def test_mid_tier_one_per_artist_and_album():
@@ -78,26 +116,13 @@ def test_top_tier_is_the_most_played_under_caps():
 
 
 def test_same_song_on_two_editions_kept_once():
-    dup = [
-        {
-            "videoId": "a",
-            "title": "Hit",
-            "artists": ["X"],
-            "album": "LP",
-            "albumYear": 1,
-            "popularity": 10**12,
-        },
-        {
-            "videoId": "b",
-            "title": "hit",
-            "artists": ["X"],
-            "album": "LP (Deluxe)",
-            "albumYear": 1,
-            "popularity": 10**11,
-        },
-    ]
-    pl = build_playlist(dup + POOL[:200], size=30, seed=1)
+    pl = build_playlist(DUP + POOL[:200], size=30, seed=1)
     assert [t["videoId"] for t in pl if t["title"].lower() == "hit"] == ["a"]
+
+
+def test_excluded_song_does_not_come_back_as_its_deluxe_copy():
+    pl = build_playlist(DUP + POOL[:200], size=30, seed=1, exclude={"a"})
+    assert not [t for t in pl if t["title"].lower() == "hit"]
 
 
 def test_thin_pool_returns_what_it_can_without_breaking_caps():

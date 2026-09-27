@@ -36,9 +36,10 @@ def album_tracks(yt, artist, album, year_range):
             "title": t["title"],
             "artists": [a["name"] for a in t.get("artists") or []],
             "album": detail["title"],
+            "albumId": hits[0]["browseId"],
             "albumYear": year,
             "popularity": parse_plays(t.get("views")) or 0,
         }
         for t in detail.get("tracks", [])
-        if t.get("videoId")
+        if t.get("videoId") and t.get("artists")  # no artist: unplayable or uncappable
     ]

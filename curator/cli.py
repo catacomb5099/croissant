@@ -23,13 +23,19 @@ def main():
     p.add_argument(
         "--exclude-last", type=int, default=4, help="skip songs featured in the last K editions"
     )
-    p.add_argument("--date", default=date.today().isoformat(), help="edition date (YYYY-MM-DD)")
+    p.add_argument(
+        "--date", type=date.fromisoformat, default=date.today(), help="edition date (YYYY-MM-DD)"
+    )
     a = p.parse_args()
+    a.date = a.date.isoformat()  # validated above: it becomes the file name
 
     cats = yaml.safe_load((ROOT / "categories.yaml").read_text())
     if a.category not in cats:
         sys.exit(f"unknown category {a.category!r}; known: {', '.join(cats)}")
     cat = cats[a.category]
+    out = ROOT / "output" / a.category / f"{a.date}.json"
+    if out.exists():
+        sys.exit(f"{out.relative_to(ROOT)} already exists; delete it to rerun this edition")
     lo, hi = map(int, str(cat["year"]).split("-"))
     filters = {k: v for k, v in cat.items() if k != "title"}
 
@@ -64,6 +70,8 @@ def main():
     exclude = {t["videoId"] for ed in recent for t in ed["tracks"]}
     seed = a.seed if a.seed is not None else random.SystemRandom().randrange(2**31)
     tracks = picker.build_playlist(pool, size=a.size, seed=seed, exclude=exclude)
+    if len(tracks) < a.size:
+        sys.exit(f"only {len(tracks)} of {a.size} songs available; not writing an edition")
 
     edition = {
         "title": cat["title"],
@@ -72,7 +80,6 @@ def main():
         "seed": seed,
         "tracks": tracks,
     }
-    out = ROOT / "output" / a.category / f"{a.date}.json"
     out.parent.mkdir(parents=True, exist_ok=True)
     out.write_text(json.dumps(edition, indent=1, ensure_ascii=False) + "\n")
     hist_file.parent.mkdir(exist_ok=True)

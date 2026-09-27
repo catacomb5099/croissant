@@ -17,4 +17,7 @@ requests per minute. Behind a corporate proxy, point `REQUESTS_CA_BUNDLE` and `S
 at a bundle that includes the proxy's root certificate.
 
 Each edition excludes songs featured in the last 4 editions (`--exclude-last`) and records the
-random seed it used, so a week can be reproduced with `--seed <n> --date <date>`.
+random seed it used, so the pick can be replayed with `--seed <n> --date <date>` against the same
+pool (Discogs ranking and play counts move, so a month later the result will differ). A run stops
+without writing anything when the edition file already exists or fewer than `--size` songs are
+available.

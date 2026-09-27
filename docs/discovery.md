@@ -12,7 +12,7 @@ real requests on 27-09-2026 unless marked otherwise.
 | Does Discogs search work without a token? | Yes. The docs say authentication is required; a plain request returns results and a `25 requests/minute` limit header. A free token raises that to 60/min and adds cover images. Not needed for this project. |
 | Do the filters we need exist? | Year range (`year=1980-1989`), genre, style, master vs release, and `sort=have` (most collected) all work. `decade` does not filter (it behaves like a text search). `format=Album` is required, otherwise singles come back too. There is no "most sold" sort. |
 | Can we get per-song play counts? | Yes, from YouTube Music, anonymously. Over 20 sample albums: 20/20 found, 260/262 tracks carried a play count. About 1 second per album. |
-| Does the selection do what the brief asked? | Yes: 50/25/25 tiers, one-per-artist/album in the middle tier, playlist-wide caps of 5 per artist and 2 per album, seeded randomness, history log, exclusion of the last 4 editions. 16 automated checks pass. |
+| Does the selection do what the brief asked? | Yes: 50/25/25 tiers, one-per-artist/album in the middle tier, playlist-wide caps of 5 per artist and 2 per album, seeded randomness, history log, exclusion of the last 4 editions. 20 automated checks pass. |
 | Did it run end to end? | Yes, live, for "80s indie pop" and "current pop". Output files are in `output/`, the log of what was picked and why in `history/`. "90s grime" returns 0 albums (see below). |
 | Weekly cost | Per category: 1 Discogs request + about 200 YouTube Music requests, about 1.5 minutes. Three categories fit comfortably in a free GitHub Actions run. |
 
@@ -93,7 +93,8 @@ bundle that includes the proxy root certificate; a plain server or GitHub Action
 Input: the pool of tracks (about 1000 for 100 albums) with artist, album and plays.
 Output: one playlist of N songs (default 40; 30-50 by `--size`).
 
-1. Drop songs featured in the last K editions (default 4) and duplicate songs.
+1. Drop songs featured in the last K editions (default 4), by song as well as by id so a
+   deluxe copy of a used song does not come back, and duplicate songs.
 2. **Top tier, 50%:** walk the pool from most to least played; take a song if its artist has
    fewer than 5 songs and its album fewer than 2 in the playlist so far.
 3. **Middle tier, 25%:** from what is left, take the top quarter by plays (well known, but
@@ -101,25 +102,32 @@ Output: one playlist of N songs (default 40; 30-50 by `--size`).
    per album within this tier (the playlist-wide caps still apply).
 4. **Random tier, 25%:** shuffle everything left and pick under the playlist-wide caps.
 5. If the pool is too thin to fill a tier, top up by popularity; final order is shuffled so
-   the playlist does not open with 20 hits followed by 20 unknowns.
+   the playlist does not open with 20 hits followed by 20 unknowns. If fewer than N songs are
+   available (for example YouTube Music blocked every lookup) the run stops without writing
+   anything, so an empty edition is never published.
 
 Every song records its tier and a reason (for example `#3 of 1048 by plays` or
 `random pick (seed 1234) from 812 remaining`). The seed is fresh each run unless `--seed`
-is given and is written into the edition, so any week can be reproduced exactly.
+is given and is written into the edition, so a pick can be replayed against the same pool.
 
 Why editions differ week to week even though the top tier is deterministic: last week's
 20 hits are excluded, so the next 20 move up; the other 20 depend on the seed.
 
-Checks (`uv run pytest`, 16 passed): playlist-wide caps hold across tiers; no duplicates;
+Checks (`uv run pytest`, 20 passed): playlist-wide caps hold across tiers; no duplicates;
 excluded songs never reappear; sizes 30/40/50 come out exact; tier counts are 20/10/10 at
 size 40 and within one of each other at size 30; same seed reproduces, different seeds
 differ; the top tier really is the most-played set the caps allow; a deluxe-edition copy of
-a song is kept once; a thin pool returns what the caps allow rather than breaking them.
+a song is kept once; a song excluded from a previous edition does not come back as its deluxe
+copy; the album cap counts an album once however its tracks credit artists; a thin pool returns
+what the caps allow rather than breaking them; a YouTube Music match outside the category's
+years is rejected.
 
 ## 4. Live run (27-09-2026)
 
 `uv run curate 80s-indie-pop --date 2026-09-27` and `uv run curate current-pop --date 2026-09-27`,
-then a second "80s indie pop" edition dated 2026-10-04 to prove the exclusion.
+then a second "80s indie pop" edition dated 2026-10-04 to prove the exclusion. That second
+edition was test data made on 27-09-2026; its files are not committed, so the real 2026-10-04
+run starts from one edition of history. The measurements below stand.
 
 | Edition | Albums found on YouTube Music | Pool | Wall time | Result |
 |---|---|---|---|---|
@@ -189,7 +197,7 @@ Output shape per edition:
 {"title": "80s indie pop", "category": {"title": "...", "year": "1980-1989", "style": "Indie Pop"},
  "editionDate": "2026-09-27", "seed": 123456789,
  "tracks": [{"videoId": "...", "title": "...", "artists": ["The Smiths"], "album": "The Queen Is Dead",
-             "albumYear": 1986, "popularity": 38000000, "tier": "top", "reason": "#1 of 1048 by plays"}]}
+             "albumId": "MPREb_...", "albumYear": 1986, "popularity": 38000000, "tier": "top", "reason": "#1 of 1048 by plays"}]}
 ```
 
 ## 8. Weekly scheduler
@@ -200,9 +208,9 @@ Output shape per edition:
 | cron on the owner's server (where naviseerr runs) writing to a folder naviseerr mounts | Same network as naviseerr, an IP that already works with YouTube Music; no GitHub write permission needed. | One more thing to keep alive on the server; no public URL unless it also pushes to GitHub; history lives only on that box unless backed up. |
 
 Recommendation: start with GitHub Actions because it needs nothing new; if YouTube blocks
-the runner, move the same command to the server. In both cases a run is idempotent per
-date (rerunning the same day overwrites that day's file but would append a second history
-line, so schedule it once).
+the runner, move the same command to the server. In both cases a run is safe to trigger
+twice: the second run stops because the edition file already exists, so the history never
+gets a duplicate line.
 
 ## Not included / follow-ups
 

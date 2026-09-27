@@ -7,7 +7,7 @@ TIERS = {"top": 0.5, "random": 0.25, "mid": 0.25}
 
 
 def _album_key(t):
-    return (t["artists"][0] if t["artists"] else "", t["album"])
+    return t["albumId"]
 
 
 def _song_key(t):
@@ -15,13 +15,15 @@ def _song_key(t):
 
 
 def build_playlist(pool, *, size, seed, exclude=frozenset(), max_per_artist=5, max_per_album=2):
-    """pool: dicts with videoId, title, artists (list[str]), album, albumYear, popularity (int).
+    """pool: dicts with videoId, title, artists (list[str]), album, albumId, albumYear, popularity.
 
     Returns `size` tracks (fewer only when the pool runs dry), each with 'tier' and 'reason'
     added. Same pool + same seed + same exclusions -> same playlist.
     """
     rng = random.Random(seed)
-    ranked, seen_ids, seen_songs = [], set(), set()
+    ranked, seen_ids = [], set()
+    # An excluded song may exist as another copy (deluxe/reissue) under a different videoId.
+    seen_songs = {_song_key(t) for t in pool if t["videoId"] in exclude}
     for t in sorted(pool, key=lambda t: (-t["popularity"], t["videoId"])):
         # Same song on a deluxe/reissue has a different videoId; keep the most played copy.
         if t["videoId"] in exclude or t["videoId"] in seen_ids or _song_key(t) in seen_songs:
