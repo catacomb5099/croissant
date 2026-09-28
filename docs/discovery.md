@@ -102,7 +102,8 @@ Output: one playlist of N songs (default 40; 30-50 by `--size`).
    per album within this tier (the playlist-wide caps still apply).
 4. **Random tier, 25%:** shuffle everything left and pick under the playlist-wide caps.
 5. If the pool is too thin to fill a tier, top up by popularity; final order is shuffled so
-   the playlist does not open with 20 hits followed by 20 unknowns. If fewer than N songs are
+   the tiers are mixed rather than grouped, except that the first two songs are always hits (any
+   two, chosen by the shuffle) so the playlist opens strong (owner's decision, 28-09-2026). If fewer than N songs are
    available (for example YouTube Music blocked every lookup) the run stops without writing
    anything, so an empty edition is never published.
 
