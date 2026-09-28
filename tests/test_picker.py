@@ -129,3 +129,17 @@ def test_thin_pool_returns_what_it_can_without_breaking_caps():
     pl = build_playlist(POOL[:60], size=40, seed=7)  # 6 albums, cap 2 each -> at most 12
     assert len(pl) == 12
     assert max(Counter(t["album"] for t in pl).values()) <= 2
+
+
+def test_order_is_mixed_but_opens_with_two_hits():
+    out = build_playlist(POOL, size=40, seed=5)
+    assert [t["tier"] for t in out[:2]] == ["top", "top"]
+    tiers = [t["tier"] for t in out]
+    assert tiers != sorted(tiers, key=["top", "mid", "random"].index), "tiers must not be grouped"
+    # Different seeds open with different hits: the openers are any two hits, not the top two.
+    others = {
+        tuple(t["videoId"] for t in build_playlist(POOL, size=40, seed=s)[:2]) for s in range(6)
+    }
+    assert len(others) > 1
+    by_plays = sorted(out, key=lambda t: -t["popularity"])[:2]
+    assert not all(t in by_plays for t in out[:2]) or len(others) > 1

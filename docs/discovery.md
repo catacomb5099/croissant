@@ -14,7 +14,7 @@ real requests on 27-09-2026 unless marked otherwise.
 | Can we get per-song play counts? | Yes, from YouTube Music, anonymously. Over 20 sample albums: 20/20 found, 260/262 tracks carried a play count. About 1 second per album. |
 | Does the selection do what the brief asked? | Yes: 50/25/25 tiers, one-per-artist/album in the middle tier, playlist-wide caps of 5 per artist and 2 per album, seeded randomness, history log, exclusion of the last 4 editions. 20 automated checks pass. |
 | Did it run end to end? | Yes, live, for "80s indie pop" and "current pop". Output files are in `output/`, the log of what was picked and why in `history/`. "90s grime" returns 0 albums (see below). |
-| Weekly cost | Per category: 1 Discogs request + about 200 YouTube Music requests, about 1.5 minutes. Three categories fit comfortably in a free GitHub Actions run. |
+| Weekly cost | Per category: 1 Discogs request + about 200 YouTube Music requests, about 1.5 minutes. The 49 categories in `categories.yaml` take over an hour, one after another. |
 
 ## 1. Discogs
 
@@ -102,7 +102,8 @@ Output: one playlist of N songs (default 40; 30-50 by `--size`).
    per album within this tier (the playlist-wide caps still apply).
 4. **Random tier, 25%:** shuffle everything left and pick under the playlist-wide caps.
 5. If the pool is too thin to fill a tier, top up by popularity; final order is shuffled so
-   the playlist does not open with 20 hits followed by 20 unknowns. If fewer than N songs are
+   the tiers are mixed rather than grouped, except that the first two songs are always hits (any
+   two, chosen by the shuffle) so the playlist opens strong (owner's decision, 28-09-2026). If fewer than N songs are
    available (for example YouTube Music blocked every lookup) the run stops without writing
    anything, so an empty edition is never published.
 
@@ -150,8 +151,8 @@ compilation-like release). Both rates are fine for a pool of about 1000 songs.
 
 Per category: 1 Discogs request (100 results per page; 2 if compilations push it over) and
 2 YouTube Music requests per album, so about 200. Wall time 81 seconds for 80s indie pop and 96 seconds for current pop, dominated
-by YouTube Music latency; the selection itself takes milliseconds. Three categories: about
-600 YouTube Music requests and about 5 minutes per week. Discogs' 25/min limit is
+by YouTube Music latency; the selection itself takes milliseconds. The 49 categories of
+28-09-2026: about 10,000 YouTube Music requests and over an hour per week, one category after another. Discogs' 25/min limit is
 irrelevant at this volume; YouTube Music has no published limit and this is far below what
 the ytmusic-adapter already sends. The risk is the same as for the adapter: an IP that
 YouTube starts to challenge. Running on the owner's server keeps it on an IP that already

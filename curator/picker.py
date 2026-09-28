@@ -86,5 +86,8 @@ def build_playlist(pool, *, size, seed, exclude=frozenset(), max_per_artist=5, m
         if fits(t):
             take(t, "top", f"#{rank[t['videoId']]} of {n_pool} by plays (top-up, tiers ran dry)")
 
+    # Final order is fully shuffled so hits, mid-tier and random picks are mixed together, except
+    # that the playlist opens with two hits (any two, the shuffle decides which) to start strong.
     rng.shuffle(picked)
-    return picked
+    openers = [t for t in picked if t["tier"] == "top"][:2]
+    return openers + [t for t in picked if t not in openers]

@@ -1,11 +1,190 @@
 # One entry per suggested playlist. Every key except `title` is sent to the Discogs search
 # as a filter (https://www.discogs.com/developers#page:database,header:database-search).
 # `year` must be a "from-to" range; it is also used to reject wrong YouTube Music matches.
+#
+# Grouped by era: the client shows one shelf per group, all-time first, then each decade. A range
+# that stays inside one decade is that decade's shelf; a range that spans decades is "all-time".
+# Discogs has no "metal", "R&B", "dance" or "UK rap" genre: those are its style tags, checked live
+# against the API on 28-09-2026 (the top albums looked right). Discogs tags big pop albums with a
+# dozen styles, so the niche lists (drum and bass, dancehall, deep house) lean mainstream at the
+# top; tighten a category by swapping its style, not by adding a second one (the API takes one).
 
-80s-indie-pop:
-  title: 80s indie pop
-  year: 1980-1989
-  style: Indie Pop
+# --- All-time: "from-to" spans every decade. Bump the top year each January, like current-pop.
+
+rock-hits:
+  title: Rock hits
+  year: 1950-2026
+  genre: Rock
+
+pop-hits:
+  title: Pop hits
+  year: 1950-2026
+  genre: Pop
+
+# Discogs has no "UK rap" tag and its country filter follows the pressing, not the artist, so
+# grime inside the hip hop genre is the closest it gets (Dizzee, Stormzy, slowthai, Skepta).
+uk-rap-hits:
+  title: UK rap hits
+  year: 1950-2026
+  genre: Hip Hop
+  style: Grime
+
+house-hits:
+  title: House hits
+  year: 1950-2026
+  style: House
+
+deep-house-hits:
+  title: Deep house hits
+  year: 1950-2026
+  style: Deep House
+
+techno-hits:
+  title: Techno hits
+  year: 1950-2026
+  style: Techno
+
+drum-and-bass-hits:
+  title: Drum and bass hits
+  year: 1950-2026
+  style: Drum n Bass
+
+disco-hits:
+  title: Disco hits
+  year: 1950-2026
+  style: Disco
+
+gaming-hits:
+  title: Gaming hits
+  year: 1950-2026
+  style: Video Game Music
+
+# "EDM" is not a Discogs tag; Progressive House from 2008 on is Avicii, Guetta, deadmau5, Calvin Harris.
+edm-hits:
+  title: EDM hits
+  year: 2008-2026
+  style: Progressive House
+
+electronic-hits:
+  title: Electronic hits
+  year: 1950-2026
+  genre: Electronic
+
+# --- Now. "Current" is not computed: widen or bump the range each January.
+
+current-pop:
+  title: Current pop
+  year: 2024-2026
+  genre: Pop
+
+current-hip-hop:
+  title: Current hip hop
+  year: 2024-2026
+  genre: Hip Hop
+
+# Thin on Discogs: 2024-2026 gave 22 albums and 37 songs, three short of an edition, so this
+# reaches back a year further (33 albums). Still expect "not enough songs" some weeks.
+new-uk-rap:
+  title: New UK rap
+  year: 2023-2026
+  genre: Hip Hop
+  style: Grime
+
+# --- 2010s
+
+2010s-hits:
+  title: 2010s hits
+  year: 2010-2019
+
+2010s-hip-hop:
+  title: 2010s hip hop
+  year: 2010-2019
+  genre: Hip Hop
+
+2010s-dance:
+  title: 2010s dance
+  year: 2010-2019
+  style: Dance-pop
+
+2010s-edm:
+  title: 2010s EDM
+  year: 2010-2019
+  style: Progressive House
+
+2010s-rnb:
+  title: 2010s R&B
+  year: 2010-2019
+  style: Contemporary R&B
+
+# The Reggae genre is dominated by pop albums that carry it as a fourth tag; Dancehall is closer.
+2010s-dancehall-reggae:
+  title: 2010s dancehall & reggae
+  year: 2010-2019
+  style: Dancehall
+
+2010s-pop:
+  title: 2010s pop
+  year: 2010-2019
+  genre: Pop
+
+2010s-indie-alternative:
+  title: 2010s indie & alternative
+  year: 2010-2019
+  style: Alternative Rock
+
+2010s-rock:
+  title: 2010s rock
+  year: 2010-2019
+  genre: Rock
+
+2010s-uk-rap:
+  title: 2010s UK rap
+  year: 2010-2019
+  genre: Hip Hop
+  style: Grime
+
+2010s-grime:
+  title: 2010s grime
+  year: 2010-2019
+  style: Grime
+
+# --- 2000s
+
+2000s-hip-hop:
+  title: 2000s hip hop
+  year: 2000-2009
+  genre: Hip Hop
+
+2000s-rnb:
+  title: 2000s R&B
+  year: 2000-2009
+  style: Contemporary R&B
+
+2000s-indie-alternative:
+  title: 2000s indie & alternative
+  year: 2000-2009
+  style: Alternative Rock
+
+2000s-metal:
+  title: 2000s metal
+  year: 2000-2009
+  style: Heavy Metal
+
+# --- 90s
+
+90s-hits:
+  title: 90s hits
+  year: 1990-1999
+
+90s-hip-hop:
+  title: 90s hip hop
+  year: 1990-1999
+  genre: Hip Hop
+
+90s-dance:
+  title: 90s dance
+  year: 1990-1999
+  style: Eurodance
 
 # Faithful to the brief, but Discogs has no grime albums before 2003 (the genre emerged
 # then), so this returns 0 albums today. Change `year` to 2000-2009 to get a playlist.
@@ -14,8 +193,86 @@
   year: 1990-1999
   style: Grime
 
-# "Current" is not computed: widen or bump the range each January.
-current-pop:
-  title: Current pop
-  year: 2024-2026
+# --- 80s
+
+80s-hits:
+  title: 80s hits
+  year: 1980-1989
+
+80s-rock:
+  title: 80s rock
+  year: 1980-1989
+  genre: Rock
+
+80s-dance:
+  title: 80s dance
+  year: 1980-1989
+  style: Dance-pop
+
+80s-indie-pop:
+  title: 80s indie pop
+  year: 1980-1989
+  style: Indie Pop
+
+80s-indie-alternative:
+  title: 80s indie & alternative
+  year: 1980-1989
+  style: Alternative Rock
+
+80s-metal:
+  title: 80s metal
+  year: 1980-1989
+  style: Heavy Metal
+
+# --- 70s
+
+70s-hits:
+  title: 70s hits
+  year: 1970-1979
+
+70s-rock:
+  title: 70s rock
+  year: 1970-1979
+  genre: Rock
+
+70s-pop:
+  title: 70s pop
+  year: 1970-1979
   genre: Pop
+
+70s-party:
+  title: 70s party
+  year: 1970-1979
+  style: Disco
+
+# --- 60s
+
+60s-hits:
+  title: 60s hits
+  year: 1960-1969
+
+60s-rock:
+  title: 60s rock
+  year: 1960-1969
+  genre: Rock
+
+60s-pop:
+  title: 60s pop
+  year: 1960-1969
+  genre: Pop
+
+60s-rnb-soul:
+  title: 60s R&B & soul
+  year: 1960-1969
+  style: Soul
+
+60s-folk:
+  title: 60s folk
+  year: 1960-1969
+  style: Folk
+
+# --- 50s. Collectors' 50s is jazz (Miles Davis, Brubeck, Coltrane) and that is what comes back.
+
+50s-hits:
+  title: 50s hits
+  year: 1950-1959
