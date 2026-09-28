@@ -82,10 +82,11 @@ current-hip-hop:
   year: 2024-2026
   genre: Hip Hop
 
-# Thin on Discogs (about 20 albums), so expect "not enough songs" some weeks.
+# Thin on Discogs: 2024-2026 gave 22 albums and 37 songs, three short of an edition, so this
+# reaches back a year further (33 albums). Still expect "not enough songs" some weeks.
 new-uk-rap:
   title: New UK rap
-  year: 2024-2026
+  year: 2023-2026
   genre: Hip Hop
   style: Grime
 
