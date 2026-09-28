@@ -7,15 +7,19 @@ dependencies = [
     "ytmusicapi==1.12.2",
     "requests>=2.32,<3",
     "pyyaml>=6,<7",
+    "fastapi>=0.115,<1",
+    "uvicorn>=0.30,<1",
 ]
 
 [project.scripts]
 curate = "curator.cli:main"
+curate-service = "curator.service:main"
 
 [dependency-groups]
 dev = [
     "pytest>=8.3,<9",
     "ruff>=0.7,<1",
+    "httpx>=0.27,<1",
 ]
 
 [build-system]

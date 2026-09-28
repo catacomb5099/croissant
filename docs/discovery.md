@@ -212,6 +212,12 @@ the runner, move the same command to the server. In both cases a run is safe to 
 twice: the second run stops because the edition file already exists, so the history never
 gets a duplicate line.
 
+**Decision (2026-09-27): neither of the above.** The curator does not schedule itself.
+naviseerr already has a weekly clock, so it triggers a run over HTTP (`POST /v1/runs`) and polls
+until it is done; the curator is a small always-on service next to naviseerr. Triggering twice is
+still harmless for the same reason as before, and a repeated trigger during a run just returns the
+run in progress. How to start it: README, "Run it as a service".
+
 ## Not included / follow-ups
 
 - `output/index.json` (latest edition per category) for naviseerr to discover editions.
