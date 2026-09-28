@@ -1,0 +1,503 @@
+{
+ "title": "Current pop",
+ "category": {
+  "title": "Current pop",
+  "year": "2024-2026",
+  "genre": "Pop"
+ },
+ "editionDate": "2026-09-27",
+ "seed": 1012094420,
+ "tracks": [
+  {
+   "videoId": "aSugSGCC12I",
+   "title": "Manchild",
+   "artists": [
+    "Sabrina Carpenter"
+   ],
+   "album": "Man’s Best Friend",
+   "albumYear": 2025,
+   "popularity": 476000000,
+   "tier": "top",
+   "reason": "#19 of 1251 by plays"
+  },
+  {
+   "videoId": "U85bOgG7DWM",
+   "title": "Ring Ring Ring",
+   "artists": [
+    "Tyler, The Creator"
+   ],
+   "album": "DON'T TAP THE GLASS",
+   "albumYear": 2025,
+   "popularity": 25000000,
+   "tier": "mid",
+   "reason": "#231 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "ko70cExuzZM",
+   "title": "The Fate of Ophelia",
+   "artists": [
+    "Taylor Swift"
+   ],
+   "album": "The Life of a Showgirl",
+   "albumYear": 2025,
+   "popularity": 813000000,
+   "tier": "top",
+   "reason": "#10 of 1251 by plays"
+  },
+  {
+   "videoId": "u_JNpPN7Dfo",
+   "title": "warm",
+   "artists": [
+    "Ariana Grande"
+   ],
+   "album": "eternal sunshine deluxe: brighter days ahead",
+   "albumYear": 2025,
+   "popularity": 30000000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "suAR1PYFNYA",
+   "title": "Houdini",
+   "artists": [
+    "Dua Lipa"
+   ],
+   "album": "Radical Optimism",
+   "albumYear": 2024,
+   "popularity": 425000000,
+   "tier": "top",
+   "reason": "#21 of 1251 by plays"
+  },
+  {
+   "videoId": "fBE_2sHDt4E",
+   "title": "Oldies Station",
+   "artists": [
+    "twenty one pilots"
+   ],
+   "album": "Clancy",
+   "albumYear": 2024,
+   "popularity": 17000000,
+   "tier": "mid",
+   "reason": "#297 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "7InTkBxPtK4",
+   "title": "Sports car",
+   "artists": [
+    "Tate McRae"
+   ],
+   "album": "So Close To What",
+   "albumYear": 2025,
+   "popularity": 160000000,
+   "tier": "mid",
+   "reason": "#64 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "22tVWwmTie8",
+   "title": "Houdini",
+   "artists": [
+    "Eminem"
+   ],
+   "album": "The Death of Slim Shady (Coup De Grâce)",
+   "albumYear": 2024,
+   "popularity": 439000000,
+   "tier": "top",
+   "reason": "#20 of 1251 by plays"
+  },
+  {
+   "videoId": "Vi6RorMfwMU",
+   "title": "Feeling DiskInserted?",
+   "artists": [
+    "Magdalena Bay"
+   ],
+   "album": "Imaginal Disk",
+   "albumYear": 2024,
+   "popularity": 89000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "IWKyykQBRKo",
+   "title": "WILDFLOWER",
+   "artists": [
+    "Billie Eilish"
+   ],
+   "album": "HIT ME HARD AND SOFT",
+   "albumYear": 2024,
+   "popularity": 981000000,
+   "tier": "top",
+   "reason": "#6 of 1251 by plays"
+  },
+  {
+   "videoId": "Mn0aho8Ayfk",
+   "title": "I think about it all the time",
+   "artists": [
+    "Charli xcx"
+   ],
+   "album": "BRAT",
+   "albumYear": 2024,
+   "popularity": 3600000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "kPa7bsKwL-c",
+   "title": "Die With A Smile",
+   "artists": [
+    "Lady Gaga",
+    "Bruno Mars"
+   ],
+   "album": "MAYHEM",
+   "albumYear": 2025,
+   "popularity": 3500000000,
+   "tier": "top",
+   "reason": "#2 of 1251 by plays"
+  },
+  {
+   "videoId": "HPR-VwzbDRg",
+   "title": "In The Stars",
+   "artists": [
+    "Benson Boone"
+   ],
+   "album": "Fireworks & Rollerblades",
+   "albumYear": 2024,
+   "popularity": 514000000,
+   "tier": "top",
+   "reason": "#15 of 1251 by plays"
+  },
+  {
+   "videoId": "ekr2nIex040",
+   "title": "APT.",
+   "artists": [
+    "ROSÉ",
+    "Bruno Mars"
+   ],
+   "album": "rosie",
+   "albumYear": 2024,
+   "popularity": 4300000000,
+   "tier": "top",
+   "reason": "#1 of 1251 by plays"
+  },
+  {
+   "videoId": "a1Femq4NPxs",
+   "title": "BAILE INoLVIDABLE",
+   "artists": [
+    "Bad Bunny"
+   ],
+   "album": "DeBÍ TiRAR MáS FOToS",
+   "albumYear": 2025,
+   "popularity": 973000000,
+   "tier": "top",
+   "reason": "#8 of 1251 by plays"
+  },
+  {
+   "videoId": "htQBS2Ikz6c",
+   "title": "Berghain",
+   "artists": [
+    "ROSALÍA",
+    "Björk",
+    "Yves Tumor"
+   ],
+   "album": "LUX",
+   "albumYear": 2025,
+   "popularity": 70000000,
+   "tier": "mid",
+   "reason": "#117 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "eA0lHNZ1KCA",
+   "title": "toxic till the end",
+   "artists": [
+    "ROSÉ"
+   ],
+   "album": "rosie",
+   "albumYear": 2024,
+   "popularity": 399000000,
+   "tier": "top",
+   "reason": "#24 of 1251 by plays"
+  },
+  {
+   "videoId": "lY5V4hSLWY8",
+   "title": "Risk It All",
+   "artists": [
+    "Bruno Mars"
+   ],
+   "album": "The Romantic",
+   "albumYear": 2026,
+   "popularity": 401000000,
+   "tier": "top",
+   "reason": "#23 of 1251 by plays"
+  },
+  {
+   "videoId": "pyUOSaQZmxw",
+   "title": "My Old Ways",
+   "artists": [
+    "Tame Impala"
+   ],
+   "album": "Deadbeat",
+   "albumYear": 2025,
+   "popularity": 19000000,
+   "tier": "mid",
+   "reason": "#281 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "KNtJGQkC-WI",
+   "title": "we can't be friends (wait for your love)",
+   "artists": [
+    "Ariana Grande"
+   ],
+   "album": "eternal sunshine deluxe: brighter days ahead",
+   "albumYear": 2025,
+   "popularity": 860000000,
+   "tier": "top",
+   "reason": "#9 of 1251 by plays"
+  },
+  {
+   "videoId": "JwnNUUsVezU",
+   "title": "Time, You & Me",
+   "artists": [
+    "SIENNA SPIRO"
+   ],
+   "album": "Visitor",
+   "albumYear": 2026,
+   "popularity": 993000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "4ES8AVZcqs8",
+   "title": "Daughter from Hell",
+   "artists": [
+    "Gracie Abrams"
+   ],
+   "album": "Daughter from Hell",
+   "albumYear": 2026,
+   "popularity": 1100000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "G6znwCRXTSU",
+   "title": "Wild Life (One Hand Clapping Sessions)",
+   "artists": [
+    "Paul McCartney",
+    "Wings"
+   ],
+   "album": "One Hand Clapping",
+   "albumYear": 2024,
+   "popularity": 67000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "bKuuWOhJU-Y",
+   "title": "Don’t Take It Personally",
+   "artists": [
+    "Selena Gomez",
+    "benny blanco"
+   ],
+   "album": "I Said I Love You First",
+   "albumYear": 2025,
+   "popularity": 8100000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "Tztc73r8348",
+   "title": "I Can’t Get Enough (feat. Tainy)",
+   "artists": [
+    "benny blanco",
+    "Selena Gomez",
+    "J Balvin"
+   ],
+   "album": "I Said I Love You First",
+   "albumYear": 2025,
+   "popularity": 319000000,
+   "tier": "mid",
+   "reason": "#31 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "WJW-VvmRKsE",
+   "title": "360",
+   "artists": [
+    "Charli xcx"
+   ],
+   "album": "BRAT",
+   "albumYear": 2024,
+   "popularity": 121000000,
+   "tier": "mid",
+   "reason": "#86 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "IjGby3eZRqI",
+   "title": "The schlager hit parade",
+   "artists": [
+    "Pet Shop Boys"
+   ],
+   "album": "Nonetheless",
+   "albumYear": 2024,
+   "popularity": 249000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "cF1Na4AIecM",
+   "title": "Please Please Please",
+   "artists": [
+    "Sabrina Carpenter"
+   ],
+   "album": "Short n' Sweet",
+   "albumYear": 2024,
+   "popularity": 747000000,
+   "tier": "top",
+   "reason": "#11 of 1251 by plays"
+  },
+  {
+   "videoId": "5EpyN_6dqyk",
+   "title": "Timeless",
+   "artists": [
+    "The Weeknd",
+    "Playboi Carti"
+   ],
+   "album": "Hurry Up Tomorrow",
+   "albumYear": 2025,
+   "popularity": 638000000,
+   "tier": "top",
+   "reason": "#12 of 1251 by plays"
+  },
+  {
+   "videoId": "vBynw9Isr28",
+   "title": "Abracadabra",
+   "artists": [
+    "Lady Gaga"
+   ],
+   "album": "MAYHEM",
+   "albumYear": 2025,
+   "popularity": 509000000,
+   "tier": "top",
+   "reason": "#17 of 1251 by plays"
+  },
+  {
+   "videoId": "m2oDLZObREQ",
+   "title": "Change (Live From Franklin, TN)",
+   "artists": [
+    "Tears For Fears"
+   ],
+   "album": "Songs For A Nervous Planet",
+   "albumYear": 2024,
+   "popularity": 49000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "eVli-tstM5E",
+   "title": "Espresso",
+   "artists": [
+    "Sabrina Carpenter"
+   ],
+   "album": "Short n' Sweet",
+   "albumYear": 2024,
+   "popularity": 1600000000,
+   "tier": "top",
+   "reason": "#5 of 1251 by plays"
+  },
+  {
+   "videoId": "v9T_MGfzq7I",
+   "title": "DtMF",
+   "artists": [
+    "Bad Bunny"
+   ],
+   "album": "DeBÍ TiRAR MáS FOToS",
+   "albumYear": 2025,
+   "popularity": 975000000,
+   "tier": "top",
+   "reason": "#7 of 1251 by plays"
+  },
+  {
+   "videoId": "lO22bx_25ko",
+   "title": "BODYGUARD",
+   "artists": [
+    "Beyoncé"
+   ],
+   "album": "COWBOY CARTER",
+   "albumYear": 2024,
+   "popularity": 15000000,
+   "tier": "mid",
+   "reason": "#320 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "Oa_RSwwpPaA",
+   "title": "Beautiful Things",
+   "artists": [
+    "Benson Boone"
+   ],
+   "album": "Fireworks & Rollerblades",
+   "albumYear": 2024,
+   "popularity": 1900000000,
+   "tier": "top",
+   "reason": "#3 of 1251 by plays"
+  },
+  {
+   "videoId": "a9cyG_yfh1k",
+   "title": "Illusion",
+   "artists": [
+    "Dua Lipa"
+   ],
+   "album": "Radical Optimism",
+   "albumYear": 2024,
+   "popularity": 145000000,
+   "tier": "mid",
+   "reason": "#69 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "Qn8F_u0vBNI",
+   "title": "No One Noticed",
+   "artists": [
+    "The Marías"
+   ],
+   "album": "Submarine",
+   "albumYear": 2024,
+   "popularity": 423000000,
+   "tier": "top",
+   "reason": "#22 of 1251 by plays"
+  },
+  {
+   "videoId": "BgqD-Bn5Quk",
+   "title": "Habits",
+   "artists": [
+    "Eminem",
+    "White Gold"
+   ],
+   "album": "The Death of Slim Shady (Coup De Grâce)",
+   "albumYear": 2024,
+   "popularity": 46000000,
+   "tier": "mid",
+   "reason": "#158 of 1251, middle band, one per artist/album"
+  },
+  {
+   "videoId": "HTaL-Oz2FqI",
+   "title": "My Love (One Hand Clapping Sessions)",
+   "artists": [
+    "Paul McCartney",
+    "Wings"
+   ],
+   "album": "One Hand Clapping",
+   "albumYear": 2024,
+   "popularity": 133000,
+   "tier": "random",
+   "reason": "random pick (seed 1012094420) from 1221 remaining"
+  },
+  {
+   "videoId": "V9PVRfjEBTI",
+   "title": "BIRDS OF A FEATHER",
+   "artists": [
+    "Billie Eilish"
+   ],
+   "album": "HIT ME HARD AND SOFT",
+   "albumYear": 2024,
+   "popularity": 1900000000,
+   "tier": "top",
+   "reason": "#4 of 1251 by plays"
+  }
+ ]
+}
