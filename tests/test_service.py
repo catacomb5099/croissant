@@ -82,6 +82,7 @@ def test_editions_from_output_folder(root, client):
         {
             "category": "80s-indie-pop",
             "title": "80s indie pop",
+            "year": "1980-1989",
             "editionDate": "2026-09-27",
             "trackCount": 40,
         }

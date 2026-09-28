@@ -186,6 +186,7 @@ def editions():
                 {
                     "category": key,
                     "title": cat["title"],
+                    "year": cat.get("year"),
                     "editionDate": f.stem,
                     "trackCount": len(ed["tracks"]),
                 }

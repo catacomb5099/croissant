@@ -42,7 +42,8 @@ Every other call needs the header `Authorization: Bearer <token>`:
 - `GET /v1/runs/<runId>` (or `/v1/runs/latest`) shows progress: the run is `queued`, `running`,
   `succeeded`, `partial` (some categories written, some not) or `failed`, with one line per category (`written`, `exists`, `no_albums`,
   `thin_pool` or `error` plus a plain-language message).
-- `GET /v1/editions` lists the latest edition per category; `GET /v1/editions/<category>`
+- `GET /v1/editions` lists the latest edition per category (key, title, the category's `year`
+  range, edition date, track count); `GET /v1/editions/<category>`
   (optionally `?date=YYYY-MM-DD`) returns the edition JSON itself.
 
 Runs are kept as `runs/<runId>.json`, so a restart does not lose them; a run cut short by a
