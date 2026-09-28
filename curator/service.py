@@ -100,7 +100,7 @@ def auth(request: Request):
         raise _error(401, "UNAUTHORIZED", "missing or invalid bearer token")
 
 
-app = FastAPI(title="playlist-curator", lifespan=lifespan)
+app = FastAPI(title="croissant", lifespan=lifespan)
 v1 = dict(dependencies=[Depends(auth)])
 BODY = Body(None)
 

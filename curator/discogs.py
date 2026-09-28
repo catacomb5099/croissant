@@ -6,7 +6,7 @@ import re
 import requests
 
 API = "https://api.discogs.com/database/search"
-HEADERS = {"User-Agent": "playlist-curator/0.1 +https://github.com/catacomb5099/playlist-curator"}
+HEADERS = {"User-Agent": "croissant/0.1 +https://github.com/catacomb5099/croissant"}
 if os.environ.get("DISCOGS_TOKEN"):  # optional: lifts the limit from 25 to 60 requests/minute
     HEADERS["Authorization"] = f"Discogs token={os.environ['DISCOGS_TOKEN']}"
 

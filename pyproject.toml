@@ -1,5 +1,5 @@
 [project]
-name = "playlist-curator"
+name = "croissant"
 version = "0.1.0"
 description = "Pre-computes weekly suggested playlists from Discogs popularity and YouTube Music play counts"
 requires-python = ">=3.12"

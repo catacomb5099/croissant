@@ -1,4 +1,4 @@
-# Discovery: playlist curator (27-09-2026)
+# Discovery: croissant, the playlist curator (27-09-2026)
 
 Goal: pre-compute a weekly "suggested playlist" per hand-defined category (for example
 "80s indie pop") from Discogs popularity and YouTube Music play counts, as a project separate
@@ -179,7 +179,7 @@ listening to a few editions; not added yet because one default may turn out to b
 Proposal, not built:
 
 - naviseerr reads the JSON editions from a URL. Simplest: raw GitHub, for example
-  `https://raw.githubusercontent.com/catacomb5099/playlist-curator/main/output/80s-indie-pop/2026-09-27.json`.
+  `https://raw.githubusercontent.com/catacomb5099/croissant/main/output/80s-indie-pop/2026-09-27.json`.
   Alternative: a folder on the owner's server mounted into the naviseerr container. Either
   way, naviseerr needs one small extra file to know what exists: `output/index.json` listing
   each category and its latest edition date (follow-up in this repo, a few lines in the CLI).
