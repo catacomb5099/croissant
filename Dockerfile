@@ -3,6 +3,18 @@ FROM python:3.12-slim
 RUN useradd --create-home --uid 1000 appuser
 WORKDIR /app
 
+# Optional extra root CAs (certs/*.pem, gitignored) for building and running behind a TLS-intercepting
+# proxy: appended to Debian's bundle, which pip, requests (Discogs) and ytmusicapi are all pointed at.
+# Empty folder = the stock bundle. Same idea as ytmusic-adapter's and naviseerr-client's Dockerfiles.
+COPY certs/ /tmp/certs/
+RUN for pem in /tmp/certs/*.pem; do \
+      [ -f "$pem" ] || continue; \
+      cat "$pem" >> /etc/ssl/certs/ca-certificates.crt; echo >> /etc/ssl/certs/ca-certificates.crt; \
+    done
+ENV REQUESTS_CA_BUNDLE=/etc/ssl/certs/ca-certificates.crt \
+    SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt \
+    PIP_CERT=/etc/ssl/certs/ca-certificates.crt
+
 COPY pyproject.toml ./
 COPY curator ./curator
 RUN pip install --no-cache-dir .
