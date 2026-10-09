@@ -60,6 +60,7 @@ docker run -d -p 8010:8010 -e CURATOR_TOKEN=<the token> \
   -v curator-output:/app/output -v curator-history:/app/history -v curator-runs:/app/runs croissant
 ```
 
-Behind a corporate proxy add `-e REQUESTS_CA_BUNDLE=... -e SSL_CERT_FILE=...` pointing at a bundle
-that includes the proxy's root certificate, as described above.
+Behind a corporate proxy drop its root certificate into `certs/` as a `.pem` file before
+`docker build` (see `certs/README.md`): the image then trusts it both while installing packages and
+while talking to Discogs and YouTube Music. On a normal network leave `certs/` as it is.
 
