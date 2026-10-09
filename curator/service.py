@@ -30,9 +30,15 @@ def _now():
 
 def _token():
     t = os.environ.get("CURATOR_TOKEN", "")
+    f = os.environ.get("CURATOR_TOKEN_FILE", "")
+    if t and f:  # Postgres *_FILE rule: a stale CURATOR_TOKEN must not quietly beat the file
+        raise RuntimeError("set CURATOR_TOKEN or CURATOR_TOKEN_FILE, not both")
+    if f:  # Docker-secrets style hand-over
+        t = Path(f).read_text().strip()
     if len(t) < 16:  # uvicorn exits non-zero when startup raises
         raise RuntimeError(
-            "CURATOR_TOKEN must be set and at least 16 characters (openssl rand -hex 32)"
+            "CURATOR_TOKEN (or the file CURATOR_TOKEN_FILE points at) must be set and at least "
+            "16 characters (openssl rand -hex 32)"
         )
     return t
 

@@ -132,6 +132,31 @@ def test_refuses_to_start_without_token(root, monkeypatch):
         pass
 
 
+def test_token_from_file(root, monkeypatch):
+    monkeypatch.delenv("CURATOR_TOKEN")
+    (root / "token").write_text(TOKEN + "\n")
+    monkeypatch.setenv("CURATOR_TOKEN_FILE", str(root / "token"))
+    with TestClient(service.app) as c:
+        assert c.get("/health").json() == {"status": "ok"}
+        assert c.get("/v1/editions", headers=AUTH).status_code == 200
+        assert c.get("/v1/editions", headers={"Authorization": "Bearer nope"}).status_code == 401
+
+
+def test_both_token_sources_refused(root, monkeypatch):
+    (root / "token").write_text(TOKEN)
+    monkeypatch.setenv("CURATOR_TOKEN_FILE", str(root / "token"))  # root also sets CURATOR_TOKEN
+    with pytest.raises(RuntimeError, match="not both"), TestClient(service.app):
+        pass
+
+
+def test_short_token_file_refused(root, monkeypatch):
+    monkeypatch.delenv("CURATOR_TOKEN")
+    (root / "token").write_text("fifteen-chars-x")
+    monkeypatch.setenv("CURATOR_TOKEN_FILE", str(root / "token"))
+    with pytest.raises(RuntimeError, match="CURATOR_TOKEN_FILE"), TestClient(service.app):
+        pass
+
+
 def test_run_is_partial_when_only_some_categories_produce_an_edition(client, monkeypatch):
     import curator.service as svc
 
