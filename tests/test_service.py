@@ -142,6 +142,13 @@ def test_token_from_file(root, monkeypatch):
         assert c.get("/v1/editions", headers={"Authorization": "Bearer nope"}).status_code == 401
 
 
+def test_both_token_sources_refused(root, monkeypatch):
+    (root / "token").write_text(TOKEN)
+    monkeypatch.setenv("CURATOR_TOKEN_FILE", str(root / "token"))  # root also sets CURATOR_TOKEN
+    with pytest.raises(RuntimeError, match="not both"), TestClient(service.app):
+        pass
+
+
 def test_short_token_file_refused(root, monkeypatch):
     monkeypatch.delenv("CURATOR_TOKEN")
     (root / "token").write_text("fifteen-chars-x")

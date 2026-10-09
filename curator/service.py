@@ -30,7 +30,10 @@ def _now():
 
 def _token():
     t = os.environ.get("CURATOR_TOKEN", "")
-    if not t and (f := os.environ.get("CURATOR_TOKEN_FILE")):  # Docker-secrets style hand-over
+    f = os.environ.get("CURATOR_TOKEN_FILE", "")
+    if t and f:  # Postgres *_FILE rule: a stale CURATOR_TOKEN must not quietly beat the file
+        raise RuntimeError("set CURATOR_TOKEN or CURATOR_TOKEN_FILE, not both")
+    if f:  # Docker-secrets style hand-over
         t = Path(f).read_text().strip()
     if len(t) < 16:  # uvicorn exits non-zero when startup raises
         raise RuntimeError(
