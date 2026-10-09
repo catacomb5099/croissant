@@ -30,9 +30,12 @@ def _now():
 
 def _token():
     t = os.environ.get("CURATOR_TOKEN", "")
+    if not t and (f := os.environ.get("CURATOR_TOKEN_FILE")):  # Docker-secrets style hand-over
+        t = Path(f).read_text().strip()
     if len(t) < 16:  # uvicorn exits non-zero when startup raises
         raise RuntimeError(
-            "CURATOR_TOKEN must be set and at least 16 characters (openssl rand -hex 32)"
+            "CURATOR_TOKEN (or the file CURATOR_TOKEN_FILE points at) must be set and at least "
+            "16 characters (openssl rand -hex 32)"
         )
     return t
 

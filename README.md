@@ -35,6 +35,10 @@ uv run curate-service                 # listens on port 8010
 curl localhost:8010/health            # {"status":"ok"} - the only call that needs no token
 ```
 
+Instead of the variable, `CURATOR_TOKEN_FILE=/path/to/file` reads the token from a file (one line;
+this is how the naviseerr install hands over the token it generates). `CURATOR_TOKEN` wins when both
+are set.
+
 Every other call needs the header `Authorization: Bearer <token>`:
 
 - `POST /v1/runs` with an optional body `{"categories": ["80s-indie-pop"]}` (default: all of them)
