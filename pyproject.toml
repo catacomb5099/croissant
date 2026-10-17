@@ -3,6 +3,7 @@ name = "croissant"
 version = "0.1.0"
 description = "Pre-computes weekly suggested playlists from Discogs popularity and YouTube Music play counts"
 requires-python = ">=3.12"
+license = "AGPL-3.0-only"
 dependencies = [
     "ytmusicapi==1.12.2",
     "requests>=2.32,<3",

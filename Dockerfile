@@ -31,6 +31,7 @@ USER appuser
 HEALTHCHECK --interval=10s --timeout=5s --retries=5 \
     CMD python -c "import urllib.request; urllib.request.urlopen('http://localhost:8010/health', timeout=3)" || exit 1
 
+LABEL org.opencontainers.image.licenses=AGPL-3.0-only
 EXPOSE 8010
 
 # One process on purpose: the run queue lives in memory (plus runs/*.json), so a second
