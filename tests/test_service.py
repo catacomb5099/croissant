@@ -1,4 +1,5 @@
 import json
+import logging
 import shutil
 import time
 
@@ -43,6 +44,32 @@ def wait_final(client, rid):
 
 def test_health_needs_no_token(client):
     assert client.get("/health").json() == {"status": "ok"}
+
+
+def test_health_checks_logged_only_at_debug():
+    log = logging.getLogger("uvicorn.access")
+    before = log.level
+
+    def passes(path):
+        r = log.makeRecord(
+            log.name,
+            logging.INFO,
+            "",
+            0,
+            '%s - "%s %s HTTP/%s" %d',
+            ("127.0.0.1:1", "GET", path, "1.1", 200),
+            None,
+        )
+        return bool(log.filter(r)), r.levelname
+
+    try:
+        log.setLevel(logging.INFO)
+        assert passes("/health") == (False, "DEBUG")
+        assert passes("/v1/runs/latest") == (True, "INFO")
+        log.setLevel(logging.DEBUG)
+        assert passes("/health") == (True, "DEBUG")
+    finally:
+        log.setLevel(before)
 
 
 def test_auth_rejected(client):
