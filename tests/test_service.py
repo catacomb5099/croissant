@@ -216,3 +216,33 @@ def test_run_is_partial_when_only_some_categories_produce_an_edition(client, mon
     ).json()["runId"]
     final = wait_final(client, rid)
     assert final["status"] == "partial"
+
+
+def test_search_reports_are_appended_one_line_each(root, client):
+    batch = {"schema": 1, "reports": [{"id": "a", "song": {"title": "Wonderwall"}}, {"id": "b"}]}
+    assert client.post("/v1/search-reports", json=batch).status_code == 401
+    assert client.post("/v1/search-reports", json=batch, headers=AUTH).json() == {"stored": 2}
+    empty = {"schema": 1, "reports": []}
+    assert client.post("/v1/search-reports", json=empty, headers=AUTH).json() == {"stored": 0}
+    client.post("/v1/search-reports", json={"schema": 1, "reports": [{"id": "c"}]}, headers=AUTH)
+
+    (f,) = (root / "reports").glob("*.jsonl")
+    assert [json.loads(line)["id"] for line in f.read_text().splitlines()] == ["a", "b", "c"]
+
+
+def test_search_reports_refuse_what_is_not_a_schema_1_batch(client):
+    def post(body):
+        return client.post("/v1/search-reports", content=body, headers=AUTH).status_code
+
+    assert post(b"not json") == 400
+    assert post(json.dumps({"schema": 2, "reports": []})) == 400
+    assert post(json.dumps({"schema": 1, "reports": ["x"]})) == 400
+    assert post(b" " * (service.MAX_REPORT_BYTES + 1)) == 413
+
+
+def test_search_report_sender_address_is_never_logged():
+    log = logging.getLogger("uvicorn.access")
+    args = ("203.0.113.7:5123", "POST", "/v1/search-reports", "1.1", 200)
+    r = log.makeRecord(log.name, logging.INFO, "", 0, '%s - "%s %s HTTP/%s" %d', args, None)
+    assert log.filter(r)
+    assert "203.0.113.7" not in r.getMessage()

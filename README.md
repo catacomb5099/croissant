@@ -55,17 +55,24 @@ Every other call needs the header `Authorization: Bearer <token>`:
   range, edition date, track count); `GET /v1/editions/<category>`
   (optionally `?date=YYYY-MM-DD`) returns the edition JSON itself.
 
+- `POST /v1/search-reports` keeps what naviseerr's **Settings → Help improve search** sends (point
+  naviseerr's `SEARCH_LEARNING_URL` here and its `SEARCH_LEARNING_TOKEN` at this token): a body
+  `{"schema": 1, "reports": [...]}` of at most 5 MB, each report appended as one line to
+  `reports/<YYYY-MM>.jsonl` (the month it arrived), answered with `{"stored": <n>}`. There is no route
+  to read them back: read the files. The sender's IP address is left out of this route's log line.
+
 Runs are kept as `runs/<runId>.json`, so a restart does not lose them; a run cut short by a
 restart is marked `failed` ("interrupted by restart"). Categories run one after another in a single
 worker so YouTube Music is never hit in parallel. `CURATOR_ROOT` relocates `categories.yaml`,
-`output/`, `history/` and `runs/` (default: this folder).
+`output/`, `history/`, `runs/` and `reports/` (default: this folder).
 
-With Docker (single process on purpose; mount the three data folders to keep editions across restarts):
+With Docker (single process on purpose; mount the four data folders to keep editions across restarts):
 
 ```sh
 docker build -t croissant .
 docker run -d -p 8010:8010 -e CURATOR_TOKEN=<the token> \
-  -v curator-output:/app/output -v curator-history:/app/history -v curator-runs:/app/runs croissant
+  -v curator-output:/app/output -v curator-history:/app/history -v curator-runs:/app/runs \
+  -v curator-reports:/app/reports croissant
 ```
 
 Inside the naviseerr install there is one mount instead: the install's data folder at `/data`
