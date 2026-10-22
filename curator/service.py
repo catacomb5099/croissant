@@ -27,13 +27,19 @@ FINAL = {"succeeded", "partial", "failed"}
 
 
 class _HealthAtDebug(logging.Filter):
-    """The image's health check calls /health every 10 s; log those calls only at DEBUG."""
+    """The image's health check calls /health every 10 s; log those calls only at DEBUG.
+
+    A search report's sender address is never logged: the reports promise naviseerr installs that.
+    """
 
     def filter(self, r):
         # uvicorn.access args: (client, method, path, http_version, status)
-        if isinstance(r.args, tuple) and len(r.args) > 2 and str(r.args[2]).startswith("/health"):
+        path = str(r.args[2]) if isinstance(r.args, tuple) and len(r.args) > 2 else ""
+        if path.startswith("/health"):
             r.levelno, r.levelname = logging.DEBUG, "DEBUG"
             return logging.getLogger("uvicorn.access").isEnabledFor(logging.DEBUG)
+        if path.startswith("/v1/search-reports"):
+            r.args = ("-", *r.args[1:])
         return True
 
 
@@ -232,6 +238,35 @@ def edition(key: str, date: str | None = None):
     if not (f := _edition_file(key, date)):
         raise _error(404, "NOT_FOUND", f"no edition for {key}" + (f" on {date}" if date else ""))
     return json.loads(f.read_text())
+
+
+MAX_REPORT_BYTES = 5 * 1024 * 1024
+
+
+@app.post("/v1/search-reports", **v1)
+async def search_reports(request: Request):
+    """Keeps what naviseerr's "Help improve search" sends, one line per report.
+
+    Appended to reports/YYYY-MM.jsonl (the month it arrived). No read route: read the files.
+    """
+    raw = await request.body()
+    if len(raw) > MAX_REPORT_BYTES:
+        raise _error(413, "TOO_LARGE", f"at most {MAX_REPORT_BYTES} bytes per batch")
+    try:
+        body = json.loads(raw)
+    except ValueError:
+        raise _error(400, "BAD_JSON", "the body is not JSON") from None
+    if not isinstance(body, dict) or body.get("schema") != 1:
+        raise _error(400, "UNKNOWN_SCHEMA", 'expected {"schema": 1, "reports": [...]}')
+    reports = body.get("reports")
+    if not isinstance(reports, list) or not all(isinstance(r, dict) for r in reports):
+        raise _error(400, "BAD_REPORTS", "reports must be a list of objects")
+    d = ROOT / "reports"
+    d.mkdir(exist_ok=True)
+    lines = "".join(json.dumps(r, ensure_ascii=False) + "\n" for r in reports)
+    with LOCK, open(d / f"{datetime.now(UTC):%Y-%m}.jsonl", "a", encoding="utf-8") as f:
+        f.write(lines)
+    return {"stored": len(reports)}
 
 
 def main():
