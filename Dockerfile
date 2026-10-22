@@ -19,12 +19,14 @@ COPY pyproject.toml ./
 COPY curator ./curator
 RUN pip install --no-cache-dir .
 
-# categories.yaml plus the output/, history/ and runs/ folders live under CURATOR_ROOT.
-# Mount volumes at /app/output, /app/history and /app/runs to keep editions across restarts
-# (not at /app itself: an empty volume there would hide categories.yaml).
+# categories.yaml lives under CURATOR_ROOT. When the naviseerr install's data folder is mounted at
+# /data, the output/, history/ and runs/ folders are its curator/ part and the token is its
+# config/curator.token. Without /data they stay under CURATOR_ROOT: mount volumes at /app/output,
+# /app/history and /app/runs to keep editions (not at /app itself: that would hide categories.yaml).
 COPY categories.yaml ./
 RUN mkdir -p output history runs && chown -R appuser /app
-ENV CURATOR_ROOT=/app
+ENV CURATOR_ROOT=/app \
+    CURATOR_DATA_DIR=/data
 
 USER appuser
 

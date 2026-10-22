@@ -17,7 +17,8 @@ from fastapi.responses import JSONResponse
 from . import run as _run
 from .run import run_category  # module attribute so tests can monkeypatch it
 
-ROOT = _run.ROOT
+ROOT = _run.ROOT  # categories.yaml
+DATA = ROOT  # output/, history/ and runs/
 TOKEN = ""
 RUNS: dict[str, dict] = {}
 LOCK = threading.Lock()  # ponytail: one global lock and one worker; fine for a weekly job
@@ -44,9 +45,17 @@ def _now():
     return datetime.now(UTC).strftime("%Y-%m-%dT%H:%M:%SZ")
 
 
+def _data_dir():
+    """The install's data folder (CURATOR_DATA_DIR, /data in the image), when it is mounted."""
+    d = os.environ.get("CURATOR_DATA_DIR", "")
+    return Path(d) if d and Path(d).is_dir() else None
+
+
 def _token():
     t = os.environ.get("CURATOR_TOKEN", "")
     f = os.environ.get("CURATOR_TOKEN_FILE", "")
+    if not t and not f and (d := _data_dir()):  # the token naviseerr's setup writes
+        f = str(d / "config" / "curator.token")
     if t and f:  # Postgres *_FILE rule: a stale CURATOR_TOKEN must not quietly beat the file
         raise RuntimeError("set CURATOR_TOKEN or CURATOR_TOKEN_FILE, not both")
     if f:  # Docker-secrets style hand-over
@@ -64,8 +73,8 @@ def _error(status, code, message):
 
 
 def _save(r):
-    d = ROOT / "runs"
-    d.mkdir(exist_ok=True)
+    d = DATA / "runs"
+    d.mkdir(parents=True, exist_ok=True)
     (d / f"{r['runId']}.json").write_text(json.dumps(r, indent=1) + "\n")
 
 
@@ -81,7 +90,7 @@ def _worker():
                 c["status"] = "running"
                 _save(r)
             try:  # a category removed from categories.yaml mid-run is an error, not a crash
-                res = run_category(c["key"], cats[c["key"]], root=ROOT)
+                res = run_category(c["key"], cats[c["key"]], root=DATA)
             except Exception as e:  # one failure never stops the other categories
                 res = {"status": "error", "message": f"{type(e).__name__}: {e}"}
             with LOCK:
@@ -96,11 +105,13 @@ def _worker():
 
 @asynccontextmanager
 async def lifespan(app):
-    global ROOT, TOKEN
+    global ROOT, DATA, TOKEN
     TOKEN = _token()
     ROOT = Path(os.environ.get("CURATOR_ROOT") or _run.ROOT)
+    # ponytail: falls back to CURATOR_ROOT while older compose files exist; drop once they are gone
+    DATA = d / "curator" if (d := _data_dir()) else ROOT
     RUNS.clear()
-    for f in sorted((ROOT / "runs").glob("*.json")):
+    for f in sorted((DATA / "runs").glob("*.json")):
         r = json.loads(f.read_text())
         if r["status"] not in FINAL:
             r.update(status="failed", finishedAt=_now())
@@ -191,7 +202,7 @@ def get_run(run_id: str):
 
 
 def _edition_file(key, date=None):
-    d = ROOT / "output" / key
+    d = DATA / "output" / key
     files = sorted(d.glob("*.json")) if d.is_dir() else []
     if date:
         files = [f for f in files if f.stem == date]

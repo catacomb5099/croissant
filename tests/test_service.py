@@ -169,6 +169,19 @@ def test_token_from_file(root, monkeypatch):
         assert c.get("/v1/editions", headers={"Authorization": "Bearer nope"}).status_code == 401
 
 
+def test_install_data_folder_holds_token_and_state(root, tmp_path, monkeypatch):
+    data = tmp_path / "data"
+    (data / "config").mkdir(parents=True)
+    (data / "config" / "curator.token").write_text(TOKEN + "\n")
+    monkeypatch.delenv("CURATOR_TOKEN")
+    monkeypatch.setenv("CURATOR_DATA_DIR", str(data))
+    with TestClient(service.app) as c:
+        rid = c.post("/v1/runs", json={"categories": ["80s-indie-pop"]}, headers=AUTH)
+        wait_final(c, rid.json()["runId"])
+    assert (data / "curator" / "runs" / f"{rid.json()['runId']}.json").exists()
+    assert not (root / "runs").exists()  # categories.yaml still comes from CURATOR_ROOT
+
+
 def test_both_token_sources_refused(root, monkeypatch):
     (root / "token").write_text(TOKEN)
     monkeypatch.setenv("CURATOR_TOKEN_FILE", str(root / "token"))  # root also sets CURATOR_TOKEN

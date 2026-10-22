@@ -68,6 +68,11 @@ docker run -d -p 8010:8010 -e CURATOR_TOKEN=<the token> \
   -v curator-output:/app/output -v curator-history:/app/history -v curator-runs:/app/runs croissant
 ```
 
+Inside the naviseerr install there is one mount instead: the install's data folder at `/data`
+(`CURATOR_DATA_DIR`, set in the image). Croissant then keeps `output/`, `history/` and `runs/` in its
+`curator/` part and reads the token naviseerr's setup wrote to `config/curator.token`, unless
+`CURATOR_TOKEN` or `CURATOR_TOKEN_FILE` is set. Without `/data` it behaves as above.
+
 Behind a corporate proxy drop its root certificate into `certs/` as a `.pem` file before
 `docker build` (see `certs/README.md`): the image then trusts it both while installing packages and
 while talking to Discogs and YouTube Music. On a normal network leave `certs/` as it is.
