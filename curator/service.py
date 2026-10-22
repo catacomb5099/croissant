@@ -2,6 +2,7 @@
 
 import hmac
 import json
+import logging
 import os
 import queue
 import sys
@@ -22,6 +23,21 @@ RUNS: dict[str, dict] = {}
 LOCK = threading.Lock()  # ponytail: one global lock and one worker; fine for a weekly job
 QUEUE: queue.Queue = queue.Queue()
 FINAL = {"succeeded", "partial", "failed"}
+
+
+class _HealthAtDebug(logging.Filter):
+    """The image's health check calls /health every 10 s; log those calls only at DEBUG."""
+
+    def filter(self, r):
+        # uvicorn.access args: (client, method, path, http_version, status)
+        if isinstance(r.args, tuple) and len(r.args) > 2 and str(r.args[2]).startswith("/health"):
+            r.levelno, r.levelname = logging.DEBUG, "DEBUG"
+            return logging.getLogger("uvicorn.access").isEnabledFor(logging.DEBUG)
+        return True
+
+
+# At import: uvicorn sets up logging before importing the app and keeps filters already added.
+logging.getLogger("uvicorn.access").addFilter(_HealthAtDebug())
 
 
 def _now():
